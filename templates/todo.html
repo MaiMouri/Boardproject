@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h3>Detail page</h3>
+{% endblock header %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+  <div class="alert alert-success" role="alert">
+    <p>Title: {{ object.title }}</p>
+    <p>Name: {{ object.author }}</p>
+    <p><img src="{{ object.snsimage.url }}" width="380"></p>
+    <a href="{% url 'good' object.pk %}" class="btn btn-primary" tabindex="-1" role="button"
+      aria-disabled="true">いいねする</a>
+    <a href="{% url 'read' object.pk %}" class="btn btn-secondary" tabindex="-1" role="button"
+      aria-disabled="true">既読にする</a>
+  </div>
+  <a href="{% url 'todolist' %}" class="btn btn-secondary" role="button">List</a>
+</div>
+{% else %}
+Please login
+{% endif %}
+{% endblock content %}
